@@ -14,6 +14,7 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_DB: smart-brain-docker
       POSTGRES_HOST: postgres
+      REDIS_URI: redis://redis:6379
     ports: 
       - "3000:3000"
     volumes:
@@ -32,3 +33,11 @@ services:
     restart: always
     ports:
       - "5433:5432"
+
+  # Redis
+  redis:
+    container_name: jwt_session
+    # image: redis:6.2.4
+    build: ./redis
+    ports:
+      - "6379:6379"
